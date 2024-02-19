@@ -11,7 +11,9 @@
       type="text/css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+  
   </head>
+
   <body>
     <div class="max-w-screen-xl mx-auto">
       <header>
@@ -153,15 +155,15 @@
                 />
                 <div class="stat" style="border: 0">
                   <div class="text-black text-2xl md:text-4xl font-bold">
-                    NEW15
+                    NEW<small>15 </small>
                   </div>
                   <div class="stat-title">Coupon Code</div>
                 </div>
               </div>
-              <div class="stats bg-amber-400 text-primary-content">
+              <div class="stats bg-pink-400 text-primary-content">
                 <div class="stat border-0">
                   <div class="text-black text-2xl md:text-4xl font-bold">
-                    15% OFF
+                    20 % OFF
                   </div>
                   <div class="stat-title text-black">on your next purchase</div>
                   <div class="stat-title">se by January 2024</div>
@@ -173,7 +175,7 @@
                 />
                 <div class="stat" style="border: 0">
                   <div class="text-black text-2xl md:text-4xl font-bold">
-                    NEW15
+                    Couple 20
                   </div>
                   <div class="stat-title">Coupon Code</div>
                 </div>
@@ -230,7 +232,7 @@
                     </div>
                     <div class="text-right">
                       <button class="btn bg-green-300 text-green-500">
-                        40 Seats left
+                        <span id="seatLeft">40</span> Seats left
                       </button>
                     </div>
                   </div>
@@ -297,7 +299,8 @@
                           <p class="font-bold text-green-500">Selected</p>
                         </div>
                       </div>
-                      <div class="text-right">
+                      <div class="flex justify-between items-center">
+                       <div id="ticketMessage"></div>
                         <button class="btn px-7 bg-base-300">
                           <img
                             src="./images/tabler-icon-steering-wheel.png"
@@ -311,35 +314,35 @@
                         <div>A</div>
                         <div class="flex gap-6 flex-wrap">
                           <div>
-                            <button class="btn px-7">A1</button>
+                            <button id="ticketBtn" class="btn px-7">A1</button>
                           </div>
                           <div>
-                            <button class="btn px-7">A2</button>
+                            <button id="ticketBtn" class="btn px-7">A2</button>
                           </div>
 
                           <div>
-                            <button class="btn px-7">A2</button>
+                            <button id="ticketBtn" class="btn px-7 bg-green-500">A3</button>
                           </div>
                           <div>
-                            <button class="btn px-7">A2</button>
+                            <button id="ticketBtn" class="btn px-7">A4</button>
                           </div>
                         </div>
                       </div>
                       <div class="flex items-center gap-6">
-                        <div>A</div>
+                        <div>B</div>
                         <div class="flex gap-6 flex-wrap">
                           <div>
-                            <button class="btn px-7">A1</button>
+                            <button id="ticketBtn" class="btn px-7">B1</button>
                           </div>
                           <div>
-                            <button class="btn px-7">A2</button>
+                            <button id="ticketBtn" class="btn px-7 bg-green-500">B2</button>
                           </div>
 
                           <div>
-                            <button class="btn px-7 bg-green-500">A2</button>
+                            <button id="ticketBtn" class="btn px-7 bg-green-500">B3</button>
                           </div>
                           <div>
-                            <button class="btn px-7">A2</button>
+                            <button id="ticketBtn" class="btn px-7">B4</button>
                           </div>
                         </div>
                       </div>
@@ -355,24 +358,19 @@
                         </h3>
                       </div>
                       <div class="p-6 ">
-                        <div class="bg-base-200 rounded-box p-6 space-y-6">
+                        <div class="bg-base-200 rounded-box  p-6 space-y-6">
                           <div class="overflow-x-auto">
                             <table class="table table-zebra">
                               <!-- head -->
                               <thead>
                                 <tr class="border-b-2 border-dashed border-neutral-200">
-                                  <th class="text-black text-base">Seat<span class="badge bg-green-500 text-white">2</th>
+                                  <th class="text-black text-base">Seat<span id="seat" class="badge bg-green-500 text-white">0</th>
                                   <th class="text-black text-base">Class</th>
                                   <th class="text-black text-base">Price</th>
                                 </tr>
                               </thead>
-                              <tbody class="text-neutral-500">
+                              <tbody id="tableData" class="text-neutral-500">
                                 <!-- row 1 -->
-                                <tr>
-                                  <td>C2</td>
-                                  <td>Economoy Specialist</td>
-                                  <td>550</td>
-                                </tr>
                                 <!-- row 2 -->
                                 
                               </tbody>
@@ -383,16 +381,16 @@
                           </div>
                           <div class="flex text-base font-bold justify-between">
                             <h4>Total Price</h4>
-                            <h4>BDT 1100</h4>
+                            <h4>BDT <span id="totalPrice">0</span></h4>
 
                           </div>
-                            <div class="join">
-                              <input type="text" class="input input-bordered join-item" placeholder="Have any copupon?"/>
-                              <button class="btn join-item bg-green-500 text-white rounded-box ">Apply</button>
+                            <div class="join" id="couponDiv">
+                              <input type="text"  id="couponInput" class="input input-bordered join-item" placeholder="Have any copupon?"/>
+                              <button onclick="coupon(this)" class="btn join-item bg-green-500 text-white rounded-box ">Apply</button>
                             </div>
                           <div class="flex text-base font-bold justify-between">
                             <h4>Grand Total</h4>
-                            <h4>BDT 1100</h4>
+                            <h4>BDT <span id="grandTotalPrice">0</span></h4>
 
                           </div>
                         </div>
@@ -473,5 +471,6 @@
         </div>
       </footer>
     </div>
+    <script src="./ticket.js" type="text/javascript"></script>
   </body>
 </html>
