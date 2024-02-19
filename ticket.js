@@ -9,6 +9,14 @@ const totalPrice = document.getElementById("totalPrice");
 const grandTotalPrice = document.getElementById("grandTotalPrice");
 const couponDiv = document.getElementById("couponDiv");
 const couponCodes = ["NEW15", "Couple 20"];
+const number = document.getElementById("number");
+const couponPercent = {
+  NEW15: 15,
+  Couple_20: 20,
+};
+const applyBtn = document.getElementById("applyBtn");
+const couponAlert = document.getElementById("couponAlert");
+let discount = 0;
 ticketBtn.forEach((ticket) => {
   ticket.addEventListener("click", (e) => {
     ticketFunction(e.target);
@@ -116,7 +124,10 @@ const insertSuccessNode = (ticketNumber) => {
 
   totalPrice.innerText = total;
   //grand total
-  grandTotalPrice.innerText = total;
+
+  grandTotalPrice.innerText =
+    parseInt(totalPrice.innerText) -
+    (parseInt(totalPrice.innerText) / 100) * discount;
 };
 
 const removeMethod = (ticket) => {
@@ -146,7 +157,9 @@ const removeMethod = (ticket) => {
   totalPrice.innerText = total;
 
   //grand total
-  grandTotalPrice.innerText = total;
+  grandTotalPrice.innerText =
+    parseInt(totalPrice.innerText) -
+    (parseInt(totalPrice.innerText) / 100) * discount;
 };
 
 //message alert of select/remove/booked seat Ends here
@@ -155,11 +168,56 @@ const removeMethod = (ticket) => {
 
 const coupon = (btn) => {
   if (couponCodes.includes(couponInput.value)) {
-    // couponDiv.classList.add("hidden");
     couponInput.setAttribute("disabled", true);
     btn.innerText = "Applied";
     btn.setAttribute("disabled", true);
+
+    const Xbtn = document.createElement("button");
+    Xbtn.classList.add(
+      "btn",
+      "join-item",
+      "bg-red-500",
+      "text-white",
+      "rounded-box",
+      "border-0"
+    );
+    Xbtn.innerText = "X";
+
+    Xbtn.setAttribute("onclick", "Xcoupon(this)");
+
+    couponDiv.appendChild(Xbtn);
+    couponAlert.innerHTML = "";
+    //adding discount
+
+    const couponCode = couponInput.value.replace(" ", "_");
+    discount = couponPercent[couponCode];
+    grandTotalPrice.innerText =
+      parseInt(totalPrice.innerText) -
+      (parseInt(totalPrice.innerText) / 100) * discount;
   } else {
-    console.log("not matched");
+    const alert = document.createElement("span");
+    alert.innerText = "Invalid Code";
+    alert.classList.add("text-red-500", "text-base");
+    couponAlert.appendChild(alert);
+  }
+};
+
+const Xcoupon = (Xbtn) => {
+  Xbtn.remove();
+  couponInput.removeAttribute("disabled");
+  applyBtn.innerText = "Apply";
+  applyBtn.removeAttribute("disabled");
+  grandTotalPrice.innerText = totalPrice.innerText;
+  //   couponDiv.childNodes(2).removeAttribute("disabled");
+};
+
+const next = (e) => {
+  if (number.value.length > 10) {
+    console.log("move forward");
+    if (!document.getElementById("numberError").classList.contains("hidden")) {
+      document.getElementById("numberError").classList.add("hidden");
+    }
+  } else {
+    document.getElementById("numberError").classList.remove("hidden");
   }
 };
