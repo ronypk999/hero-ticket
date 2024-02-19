@@ -10,6 +10,8 @@ const grandTotalPrice = document.getElementById("grandTotalPrice");
 const couponDiv = document.getElementById("couponDiv");
 const couponCodes = ["NEW15", "Couple 20"];
 const number = document.getElementById("number");
+const discountPrice = document.getElementById("discountPrice");
+const discountDiv = document.getElementById("discount");
 const couponPercent = {
   NEW15: 15,
   Couple_20: 20,
@@ -39,6 +41,17 @@ const ticketFunction = (ticket) => {
       ticket.classList.add("border-green-500", "border-4");
       ticketCounter++;
     }
+  }
+
+  if (ticketCounter < 4) {
+    applyBtn.setAttribute("disabled", true);
+    if (couponDiv.childNodes.length > 5) {
+      Xcoupon(document.getElementById("Xcbtn"), false);
+    }
+  }
+
+  if (ticketCounter > 3) {
+    applyBtn.removeAttribute("disabled");
   }
 };
 
@@ -190,6 +203,7 @@ const coupon = (btn) => {
     Xbtn.innerText = "X";
 
     Xbtn.setAttribute("onclick", "Xcoupon(this)");
+    Xbtn.setAttribute("id", "Xcbtn");
 
     couponDiv.appendChild(Xbtn);
     couponAlert.innerHTML = "";
@@ -200,6 +214,8 @@ const coupon = (btn) => {
     grandTotalPrice.innerText =
       parseInt(totalPrice.innerText) -
       (parseInt(totalPrice.innerText) / 100) * discount;
+    discountDiv.classList.remove("hidden");
+    discountPrice.innerText = (parseInt(totalPrice.innerText) / 100) * discount;
   } else {
     const alert = document.createElement("span");
     alert.innerText = "Invalid Code";
@@ -208,12 +224,17 @@ const coupon = (btn) => {
   }
 };
 
-const Xcoupon = (Xbtn) => {
+const Xcoupon = (Xbtn, remove = true) => {
   Xbtn.remove();
   couponInput.removeAttribute("disabled");
+  discountDiv.classList.add("hidden");
   applyBtn.innerText = "Apply";
-  applyBtn.removeAttribute("disabled");
+  if (remove) {
+    applyBtn.removeAttribute("disabled");
+  }
+
   grandTotalPrice.innerText = totalPrice.innerText;
+  discount = 0;
   //   couponDiv.childNodes(2).removeAttribute("disabled");
 };
 

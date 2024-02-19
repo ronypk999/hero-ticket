@@ -386,9 +386,15 @@
                             <h4>BDT <span id="totalPrice">0</span></h4>
 
                           </div>
+
+                          <div id="discount" class="hidden flex text-base font-bold justify-between">
+                            <h4>Discount</h4>
+                            <h4>BDT <span id="discountPrice">0</span></h4>
+
+                          </div>
                             <div class="join" id="couponDiv">
                               <input type="text"  id="couponInput" class="input input-bordered join-item" placeholder="Have any copupon?"/>
-                              <button id="applyBtn" onclick="coupon(this)" class="btn join-item bg-green-500 text-white rounded-box border-0">Apply</button>
+                              <button id="applyBtn" onclick="coupon(this)" disabled class="btn join-item bg-green-500 text-white rounded-box border-0">Apply</button>
                               
                             </div>
                             <div id="couponAlert">
