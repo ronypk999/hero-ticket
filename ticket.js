@@ -17,6 +17,7 @@ const couponPercent = {
 const applyBtn = document.getElementById("applyBtn");
 const couponAlert = document.getElementById("couponAlert");
 let discount = 0;
+let ticketCounter = 0;
 ticketBtn.forEach((ticket) => {
   ticket.addEventListener("click", (e) => {
     ticketFunction(e.target);
@@ -28,10 +29,15 @@ const ticketFunction = (ticket) => {
     addErrorMessageBooked(ticket.innerText);
   } else if (ticket.classList.contains("border-green-500")) {
     removeMethod(ticket);
+    ticketCounter--;
   } else {
+    if (ticketCounter > 3) {
+      return false;
+    }
     const success = addSuccessMessageBooked(ticket.innerText);
     if (success) {
       ticket.classList.add("border-green-500", "border-4");
+      ticketCounter++;
     }
   }
 };
