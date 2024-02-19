@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +10,8 @@
       rel="stylesheet"
       type="text/css"
     />
+   
+    <link rel="stylesheet" href="./font.css">
     <script src="https://cdn.tailwindcss.com"></script>
   
   </head>
@@ -74,16 +76,16 @@
           <div class="hero-overlay bg-opacity-10"></div>
           <div class="hero-content text-center text-neutral-content">
             <div class="max-w-md">
-              <h1 class="mb-5 text-5xl font-bold">
+              <h1 class="mb-5 text-5xl raleway-800">
                 End-to-End Travel with
-                <span class="text-green-500">P Paribahan</span>
+                <span class="text-green-500">Hero Paribahan</span>
               </h1>
               <p class="mb-5">
                 Yes, you can run unit tests and view the results directly within
                 the app. The integrated testing features allow for a streamlined
                 .
               </p>
-              <button class="btn bg-green-500 border-0">Buy Tickets</button>
+              <a href="#bus-ticket" class="btn bg-green-500 border-0">Buy Tickets</a>
             </div>
           </div>
         </div>
@@ -154,10 +156,10 @@
                   src="./images/cupon-devider.png"
                 />
                 <div class="stat" style="border: 0">
-                  <div class="text-black text-2xl md:text-4xl font-bold">
+                  <div class="text-black text-2xl md:text-4xl raleway-700">
                     NEW<small>15 </small>
                   </div>
-                  <div class="stat-title">Coupon Code</div>
+                  <div class="stat-title raleway-700">Coupon Code</div>
                 </div>
               </div>
               <div class="stats bg-pink-400 text-primary-content">
@@ -174,10 +176,10 @@
                   src="./images/cupon-devider.png"
                 />
                 <div class="stat" style="border: 0">
-                  <div class="text-black text-2xl md:text-4xl font-bold">
+                  <div class="text-black text-2xl md:text-4xl raleway-700">
                     Couple 20
                   </div>
-                  <div class="stat-title">Coupon Code</div>
+                  <div class="stat-title raleway-700">Coupon Code</div>
                 </div>
               </div>
             </div>
@@ -197,7 +199,7 @@
           class="border-t-2 border-green-500 px-0 md:px-12 rounded-t-box bg-base-200"
         >
           <div class="text-center p-6">
-            <h2 class="font-bold text-xl md:text-2xl">P.H Paribahan</h2>
+            <h2 class="font-bold raleway-700 text-xl md:text-2xl">Hero Paribahan</h2>
             <p class="text-neutral-500 max-w-lg mx-auto">
               Yes, you can run unit tests and view the results directly within
               the app. The integrated testing features allow for a streamlined .
@@ -269,7 +271,7 @@
                   </div>
                   <div class="p-12 text-center">
                     <img class="mx-auto" src="./images/fare.png" alt="" />
-                    <h3 class="text-2xl font-bold">550 Taka</h3>
+                    <h3 class="text-2xl font-bold raleway-700">550 Taka</h3>
                     <p class="text-neutral-500">Per Seat</p>
                   </div>
                 </div>
@@ -277,7 +279,7 @@
             </div>
             <!--Ticket Section 1 End-->
             <!--Ticket Section 2-->
-            <div class="mx-5">
+            <div class="mx-5" id="bus-ticket">
               <div class="flex flex-col lg:flex-row justify-around bg-white">
                 <div class="">
                   <div class="p-6 space-y-3">
@@ -475,6 +477,26 @@
         </div>
       </footer>
     </div>
+
+    <!--modal-->
+    <!-- Open the modal using ID.showModal() method -->
+
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box text-center space-y-6">
+    <img class="mx-auto" src="./images/group.png" alt="">
+    <h3 class="font-bold text-lg text-green-500 font-bold roboto-bold">SUCCESS</h3>
+    <h5 class="font-bold roboto-medium">Thank you for Booking Our Bus Seats. 
+      We are working hard to find the best service and deals for you.</h5>
+    <p class="text-neutral-500">Shortly you will find a confirmation in your email.</p>
+    <div class="modal-action justify-center">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button id="reload" class="btn bg-green-500 text-white border-0 px-12">Continue</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
     <script src="./ticket.js" type="text/javascript"></script>
   </body>
 </html>

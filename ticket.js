@@ -213,7 +213,7 @@ const Xcoupon = (Xbtn) => {
 
 const next = (e) => {
   if (number.value.length > 10) {
-    console.log("move forward");
+    my_modal_1.showModal();
     if (!document.getElementById("numberError").classList.contains("hidden")) {
       document.getElementById("numberError").classList.add("hidden");
     }
@@ -221,3 +221,7 @@ const next = (e) => {
     document.getElementById("numberError").classList.remove("hidden");
   }
 };
+
+document.getElementById("reload").addEventListener("click", () => {
+  window.location.href = window.location.href;
+});
